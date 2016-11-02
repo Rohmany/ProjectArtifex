@@ -1,6 +1,6 @@
 <?php
 /*
- * Developed by Spera Automation Systems
+ * Developer by Spera Automation Systems
  * https://Spera.Systems
  * Under GPL
  */
@@ -12,10 +12,10 @@ class Artifex {
     private $CONNECTION_SUCCESS;
     private $CONNECTION_STRING;
     public function __construct() {
-        $this->prvt_DBHOST = ""; // database host name/ip
-        $this->prvt_DBNAME = ""; // database name
-        $this->prvt_DBUSER = ""; // database username
-        $this->prvt_DBPASS = ""; // database password
+        $this->prvt_DBHOST = ""; // Put your database host here
+        $this->prvt_DBNAME = ""; // Put your database name here 
+        $this->prvt_DBUSER = ""; // Put your database username here
+        $this->prvt_DBPASS = ""; // Put your database password here (You can obfuscate the file anyway) 
         $this->CONNECTION_SUCCESS = FALSE;
     }
     public function connect() {
@@ -57,7 +57,6 @@ class Artifex {
 	}
 	$sql_q = rtrim($sql_q, ","); // remove the last ','
 	$sql_q .= " WHERE ".$skey_name." = '".$skey_value."'"; // add where condition based on key & value parameters
-        echo $sql_q;
         return $this->execute($sql_q); // call executer
         
     }
@@ -73,6 +72,7 @@ class Artifex {
         return $replyable;
     }
     public function Delete($table_name, $key, $value) {
+        //$value = strip_tags($value);
         $sql_q = "DELETE FROM ".$table_name." WHERE ".$key." = ".$value;
         return $this->execute($sql_q);
     }
@@ -80,5 +80,9 @@ class Artifex {
         $sql_q = "SELECT * FROM ".$table_name." WHERE ".$key." = '".$value."'";
         $reply = $this->execute($sql_q);
         return $reply;
+    }
+    public function find_limit_order_desc($table_name, $key, $value, $limit, $orderby) {
+        $sql_q = "SELECT * FROM `".$table_name."` WHERE `".$key."` = '".$value."' ORDER BY `".$orderby."` DESC LIMIT ".$limit."";
+        $this->execute($sql_q);
     }
 }
