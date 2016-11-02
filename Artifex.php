@@ -2,7 +2,7 @@
 /*
  * Developed by Spera Automation Systems
  * https://Spera.Systems
- * All Rights reserved
+ * Under GPL
  */
 class Artifex {
     private $prvt_DBHOST;
