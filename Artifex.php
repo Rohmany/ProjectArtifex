@@ -1,6 +1,6 @@
 <?php
 /*
- * Developer by Spera Automation Systems
+ * Developed by Spera Automation Systems
  * https://Spera.Systems
  * Under GPL
  */
