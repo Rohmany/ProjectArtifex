@@ -1,7 +1,7 @@
 <?php
 /*
- * Developer by Spera Automation Systems
- * https://Spera.Systems
+ * Developer by Spera Automation Systems and others
+ * https://artifex.Spera.Systems
  * Under GPL
  */
 class Artifex {
