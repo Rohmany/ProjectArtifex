@@ -1,6 +1,6 @@
 # ProjectArtifex
 
-Project Artifex is a project built for php developers to help handling faster with mysqli tables.
+Project Artifex is a project built for php developers to help faster development with MySQL DB.
 
 Just do the following:
 
