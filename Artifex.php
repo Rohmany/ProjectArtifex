@@ -111,7 +111,10 @@ class Artifex {
         $sql_q = "SELECT * FROM `" . strtolower($table_name) . "` WHERE `" . strtoupper($key) . "` = '" . $value . "' ORDER BY `" . strtoupper($orderby) . "` DESC LIMIT " . $limit . "";
         return $this->execute($sql_q);
     }
-
+    public function find_limit_like_order_asc($table_name, $key, $value, $limit, $orderby) {
+        $sql_q = "SELECT * FROM `" . strtolower($table_name) . "` WHERE `" . strtoupper($key) . "` = '" . $value . "' ORDER BY `" . strtoupper($orderby) . "` ASC LIMIT " . $limit . "";
+        return $this->execute($sql_q);
+    }
     public function find_like($table_name, $key, $value) {
         $sql_q = "SELECT * FROM `" . strtolower($table_name) . "` WHERE `" . strtoupper($key) . "` LIKE '%" . $value . "%'";
         return $this->execute($sql_q);
@@ -129,8 +132,19 @@ class Artifex {
         echo $sql_q;
         return $this->execute($sql_q);
     }
+    public function Delete_or($table_name, $key, $value, $key2, $value2) { 
+        $sql_q = "DELETE FROM " . strtolower($table_name) . " WHERE " . $key . " = " . $value . " OR " . $key2 . " = '" . $value2."'";
+        echo $sql_q;
+        return $this->execute($sql_q);
+    }
     public function find_one_and($table_name, $key, $value, $key2, $value2) { // Added By @LobnaElbakry
         $sql_q = "SELECT * FROM " . strtolower($table_name) . " WHERE " . $key . " = " . $value . " AND " . $key2 . " = '" . $value2."'";
+        $reply = $this->execute($sql_q);
+        $replyable = $reply->fetch_assoc();
+        return $replyable;
+    }
+    public function find_one_or($table_name, $key, $value, $key2, $value2) {
+        $sql_q = "SELECT * FROM " . strtolower($table_name) . " WHERE " . $key . " = " . $value . " OR " . $key2 . " = '" . $value2."'";
         $reply = $this->execute($sql_q);
         $replyable = $reply->fetch_assoc();
         return $replyable;
