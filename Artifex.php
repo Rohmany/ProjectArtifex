@@ -1,6 +1,6 @@
 <?php
 /*
- * Developer by Spera Automation Systems and others
+ * Developed by Spera Automation Systems and others contributers
  * https://artifex.Spera.Systems
  * Under GPL
  */
@@ -37,8 +37,7 @@ class Artifex {
         }
     }
     public function insert($table_name, $assoc_array) { // function to insert in database
-        $table_name = strtolower($table_name);
-	$sql_q = "INSERT INTO ".$table_name." ("; // sql query begins (string processing)
+	$sql_q = "INSERT INTO ".strtolower($table_name)." ("; // sql query begins (string processing)
 	foreach($assoc_array as $key => $value) { // loop over keys and insert them into query string
             $sql_q .= "".$key."" . " ,";
 	}
@@ -52,8 +51,7 @@ class Artifex {
 	return $this->execute($sql_q); // call executer
     }
     public function edit($table_name, $skey_name, $skey_value, $assoc_array) { // update function
-        $table_name = strtolower($table_name);
-	$sql_q = "UPDATE ".$table_name." SET "; // begin query
+	$sql_q = "UPDATE ".strtolower($table_name)." SET "; // begin query
 	foreach($assoc_array as $key => $value) { // loop over values and set them into the query string
             $sql_q .= $key . " = " . "'". $value . "',";
 	}
@@ -63,39 +61,33 @@ class Artifex {
         return $this->execute($sql_q); // call executer
     }
     public function fetch_all($table_name) {
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT * FROM ".$table_name;
+        $sql_q = "SELECT * FROM ".strtolower($table_name);
         $list = $this->execute($sql_q);
         return $list;
     }
     public function find_one($table_name, $key, $value) {
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT * FROM ".$table_name." WHERE ".$key." = '".$value."'";
+        $sql_q = "SELECT * FROM ".strtolower($table_name)." WHERE ".$key." = '".$value."'";
         $reply = $this->execute($sql_q);
         $replyable = $reply->fetch_assoc();
         return $replyable;
     }
     public function find_range($table_name, $key, $valueFrom, $valueTo) {
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT * FROM ".$table_name." WHERE ".$key." >= '".$valueFrom."' AND ".$key." <= '".$valueTo."'";
+        $sql_q = "SELECT * FROM ".strtolower($table_name)." WHERE ".$key." >= '".$valueFrom."' AND ".$key." <= '".$valueTo."'";
         $reply = $this->execute($sql_q);
         return $reply;
     }
     public function Delete($table_name, $key, $value) {
-        $table_name = strtolower($table_name);
-        $sql_q = "DELETE FROM ".$table_name." WHERE ".$key." = ".$value;
+        $sql_q = "DELETE FROM ".strtolower($table_name)." WHERE ".$key." = ".$value;
         echo $sql_q;
         return $this->execute($sql_q);
     }
     public function find($table_name, $key, $value) {
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT * FROM ".$table_name." WHERE ".$key." = '".$value."'";
+        $sql_q = "SELECT * FROM ".strtolower($table_name)." WHERE ".$key." = '".$value."'";
         $reply = $this->execute($sql_q);
         return $reply;
     }
     public function sum_where($table_name, $key, $value, $summable) {
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT SUM(`".$summable."`) as `sum` FROM `".$table_name."` WHERE `".$key."` = '".$value."'";
+        $sql_q = "SELECT SUM(`".$summable."`) as `sum` FROM `".strtolower($table_name)."` WHERE `".$key."` = '".$value."'";
         return $this->execute($sql_q)->fetch_assoc();
     }
     public function getLastError() { // return the last error message via this
@@ -106,47 +98,39 @@ class Artifex {
         return $this->CONNECTION_STRING->insert_id;
     }
     public function find_limit_order_desc($table_name, $key, $value, $limit, $orderby) {
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT * FROM `" . $table_name . "` WHERE `" . strtoupper($key) . "` = '" . $value . "' ORDER BY `" . strtoupper($orderby) . "` DESC LIMIT " . $limit . "";
+        $sql_q = "SELECT * FROM `" . strtolower($table_name) . "` WHERE `" . strtoupper($key) . "` = '" . $value . "' ORDER BY `" . strtoupper($orderby) . "` DESC LIMIT " . $limit . "";
         return $this->execute($sql_q);
     }
 
     public function find_limit_order_asc($table_name, $key, $value, $limit, $orderby) {
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT * FROM `" . $table_name . "` WHERE `" . strtoupper($key) . "` = '" . $value . "' ORDER BY `" . strtoupper($orderby) . "` ASC LIMIT " . $limit . "";
+        $sql_q = "SELECT * FROM `" . strtolower($table_name) . "` WHERE `" . strtoupper($key) . "` = '" . $value . "' ORDER BY `" . strtoupper($orderby) . "` ASC LIMIT " . $limit . "";
         return $this->execute($sql_q);
     }
 
     public function find_limit_like_order_desc($table_name, $key, $value, $limit, $orderby) {
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT * FROM `" . $table_name . "` WHERE `" . strtoupper($key) . "` = '" . $value . "' ORDER BY `" . strtoupper($orderby) . "` DESC LIMIT " . $limit . "";
+        $sql_q = "SELECT * FROM `" . strtolower($table_name) . "` WHERE `" . strtoupper($key) . "` = '" . $value . "' ORDER BY `" . strtoupper($orderby) . "` DESC LIMIT " . $limit . "";
         return $this->execute($sql_q);
     }
 
     public function find_like($table_name, $key, $value) {
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT * FROM `" . $table_name . "` WHERE `" . strtoupper($key) . "` LIKE '%" . $value . "%'";
+        $sql_q = "SELECT * FROM `" . strtolower($table_name) . "` WHERE `" . strtoupper($key) . "` LIKE '%" . $value . "%'";
         return $this->execute($sql_q);
     }
     public function find_like_or($table_name, $key1, $value1, $key2, $value2) {
-        $table_name = strtolower($table_name);
         $sql_q = "SELECT * FROM `" . strtolower($table_name) . "` WHERE `" . strtoupper($key1) . "` LIKE '%" . $value1 . "%' OR `" . strtoupper($key2) . "` LIKE '%" . $value2 . "%'";
         return $this->execute($sql_q);
     }
     public function count($table_name, $key, $value) {
-        $table_name = strtolower($table_name);
         $sql_q = "SELECT COUNT(*) as `count` FROM ".strtolower($table_name)." WHERE ".$key." = ".$value;
         return $this->execute($sql_q)->fetch_assoc();
     }
     public function Delete_and($table_name, $key, $value, $key2, $value2) { // Added by @LobnaElbakry
-        $table_name = strtolower($table_name);
-        $sql_q = "DELETE FROM " . $table_name . " WHERE " . $key . " = " . $value . " AND " . $key2 . " = '" . $value2."'";
+        $sql_q = "DELETE FROM " . strtolower($table_name) . " WHERE " . $key . " = " . $value . " AND " . $key2 . " = '" . $value2."'";
         echo $sql_q;
         return $this->execute($sql_q);
     }
     public function find_one_and($table_name, $key, $value, $key2, $value2) { // Added By @LobnaElbakry
-        $table_name = strtolower($table_name);
-        $sql_q = "SELECT * FROM " . $table_name . " WHERE " . $key . " = " . $value . " AND " . $key2 . " = '" . $value2."'";
+        $sql_q = "SELECT * FROM " . strtolower($table_name) . " WHERE " . $key . " = " . $value . " AND " . $key2 . " = '" . $value2."'";
         $reply = $this->execute($sql_q);
         $replyable = $reply->fetch_assoc();
         return $replyable;
