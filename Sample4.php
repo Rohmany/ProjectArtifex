@@ -1,4 +1,0 @@
-<?php
-
-
-// To be added
