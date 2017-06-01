@@ -1,6 +1,6 @@
 <?php
 /*
- * Developed by Spera Automation Systems and others contributers
+ * Developed by Spera Automation Systems and other contributers
  * https://artifex.Spera.Systems
  * Under GPL
  */
